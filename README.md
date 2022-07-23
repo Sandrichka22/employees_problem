@@ -1,16 +1,9 @@
 # employees_problem
 
-Pair of emoployees who have worked together
+This project identifies the pair of employees who have worked together on common projects for the longest period of time.
 
-## Getting Started
+## Simple explanation
 
-This project is a starting point for a Flutter application.
+This is a simple Flutter application, that identifies the pair of employees who have worked together the longest.
+It also displays the common projects in a grid, together with the days they worked on every project.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
