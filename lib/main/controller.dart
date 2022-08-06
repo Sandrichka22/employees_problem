@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:csv/csv.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:tuple/tuple.dart';
 
 import '../data/employee_model.dart';
@@ -43,18 +45,21 @@ class MainController extends GetxController {
     }
 
     if (_pickedFile != null) {
-      _openFile(_pickedFile!.path);
-      print("File path ${_pickedFile?.path}");
-      print(_pickedFile?.extension);
+      _openFile(_pickedFile);
     }
   }
 
-  void _openFile(filepath) async {
-    File f = File(filepath);
+  void _openFile(pickedFile) async {
+    Stream input;
+
+    if (kIsWeb) {
+      input = ByteStream.fromBytes(_pickedFile!.bytes!.toList());
+    } else {
+      File f = File(pickedFile.path);
+      input = f.openRead();
+    }
 
     print("CSV to List of Data");
-
-    final input = f.openRead();
     final fields = await input.transform(utf8.decoder).transform(const CsvToListConverter()).toList();
     print(fields);
 
